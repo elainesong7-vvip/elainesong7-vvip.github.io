@@ -1,9 +1,0 @@
-{
-  "name": "Magic Box",
-  "short_name": "Magic Box",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#f7f3ec",
-  "theme_color": "#f7f3ec",
-  "icons": []
-}
