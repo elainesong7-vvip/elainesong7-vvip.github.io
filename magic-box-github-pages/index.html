@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f3ec" />
+  <meta name="description" content="Magic Box — a gentle gratitude, wish and meditation H5 experience." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Magic Box</title>
+</head>
+<body>
+  <div class="desktop-halo" aria-hidden="true"></div>
+  <div class="app" id="app">
+    <header class="header page-home-only">
+      <div>
+        <h1>早安，<br><span>今天也是美好的一天。</span></h1>
+        <p id="todayDate" class="date-line"></p>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="noticeBtn" aria-label="通知设置"><span class="mask-icon icon-bell"></span></button>
+        <button class="icon-btn" id="menuBtn" aria-label="打开菜单"><span class="mask-icon icon-menu"></span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page active" data-page="home">
+        <article class="quote-card soft-card">
+          <div class="quote-topline"><span><img src="./assets/ui/icons/sun.svg" alt="">今日心语</span><button id="quoteLikeBtn" class="bare-icon" aria-label="收藏今日心语"><img src="./assets/ui/icons/heart.svg" alt=""></button></div>
+          <p id="dailyQuote">“你不需要把所有事情都做好，只需要找到一件值得期待的事情。”</p>
+        </article>
+
+        <button class="hero" data-nav="box" aria-label="打开魔法盒">
+          <div class="hero-bg" aria-hidden="true"></div>
+          <div class="hero-overlay" aria-hidden="true"></div>
+          <div class="hero-title">
+            <h2>魔法盒 <span>›</span></h2>
+            <p>收藏你的愿望与美好</p>
+          </div>
+          <img class="magic-box-sprite" src="./assets/sprites/magic-box.webp" alt="欧式复古魔法盒" />
+        </button>
+
+        <section class="stats-grid">
+          <button class="stat-card soft-card" id="orbCard">
+            <img class="orb-img" src="./assets/ui/orb.svg" alt="">
+            <div><strong id="orbCount">0</strong><span>我的光之球</span></div>
+            <span class="mask-icon icon-chevron"></span>
+          </button>
+          <button class="stat-card soft-card" id="starsCard">
+            <span class="star-medal"><img src="./assets/ui/icons/star.svg" alt=""></span>
+            <div><strong id="monthStars">0 / 31</strong><span>本月的星空</span></div>
+            <span class="mask-icon icon-chevron"></span>
+          </button>
+        </section>
+
+        <section class="feature-grid">
+          <button class="feature-card soft-card" data-nav="meditate">
+            <div class="feature-title"><img src="./assets/ui/icons/leaf.svg" alt=""><div><h3>冥想</h3><p>15 分钟 · 回到自己</p></div><span class="mask-icon icon-chevron"></span></div>
+            <div class="feature-visual meditation-art" aria-hidden="true"><span></span><span></span><span></span></div>
+          </button>
+          <button class="feature-card soft-card" data-nav="gratitude">
+            <div class="feature-title"><img src="./assets/ui/icons/feather.svg" alt=""><div><h3>感恩日记</h3><p>今天有什么值得感谢？</p></div><span class="mask-icon icon-chevron"></span></div>
+            <div class="feature-visual journal-art" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+          </button>
+        </section>
+      </section>
+
+      <section class="page inner-page" data-page="box">
+        <div class="page-heading">
+          <button class="back-btn" data-nav="home" aria-label="返回首页">‹</button>
+          <h2>魔法盒</h2>
+          <button class="icon-btn clean" id="addWishBtn" aria-label="新增收藏"><span class="mask-icon icon-plus"></span></button>
+        </div>
+        <div class="tab-row" role="tablist">
+          <button class="tab active" data-filter="all">全部</button>
+          <button class="tab" data-filter="text">愿望</button>
+          <button class="tab" data-filter="image">照片</button>
+        </div>
+        <div class="wish-intro soft-card">
+          <img src="./assets/sprites/magic-box.webp" alt="">
+          <div><strong>把美好的心愿收藏在这里</strong><span>可以写纸条，也可以保存一张让你心动的图片。</span></div>
+        </div>
+        <div class="wish-grid" id="wishGrid"></div>
+      </section>
+
+      <section class="page inner-page meditation-page" data-page="meditate">
+        <div class="page-heading">
+          <button class="back-btn" data-nav="home" aria-label="返回首页">‹</button>
+          <h2>冥想</h2>
+          <button class="icon-btn clean" id="soundToggle" aria-label="音乐"><span class="mask-icon icon-music"></span></button>
+        </div>
+        <div class="meditation-scene">
+          <div class="meditation-sky"></div>
+          <p>放下纷扰，在这一刻<br>只和自己在一起。</p>
+          <div class="timer-ring"><div><strong id="timerText">15:00</strong><span>深呼吸 · 回到当下</span></div></div>
+        </div>
+        <button class="gold-button" id="timerBtn">开始冥想</button>
+        <p class="small-note">完成一次冥想可获得 1 颗光之球 ✦</p>
+      </section>
+
+      <section class="page inner-page" data-page="gratitude">
+        <div class="page-heading">
+          <button class="back-btn" data-nav="home" aria-label="返回首页">‹</button>
+          <h2>感恩日记</h2>
+          <span class="count-pill" id="gratitudeCount">0</span>
+        </div>
+        <article class="prompt-card soft-card"><small>今日提示</small><p>今天有没有一件很小，但让你觉得生活其实不错的事情？</p></article>
+        <form class="journal-form soft-card" id="gratitudeForm">
+          <textarea id="gratitudeInput" maxlength="180" placeholder="写下一件值得感谢的小事…"></textarea>
+          <button class="gold-button" type="submit">收藏这一刻</button>
+        </form>
+        <div class="journal-list" id="journalList"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="主要导航">
+      <button class="nav-item active" data-nav="home"><span class="mask-icon icon-home"></span><small>首页</small></button>
+      <button class="nav-item" data-nav="meditate"><span class="mask-icon icon-moon"></span><small>冥想</small></button>
+      <button class="nav-item" data-nav="box"><span class="mask-icon icon-box"></span><small>魔法盒</small></button>
+      <button class="nav-item" id="profileNav"><span class="mask-icon icon-profile"></span><small>我</small></button>
+    </nav>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <button class="drawer-close" id="closeDrawer" aria-label="关闭">×</button>
+      <div class="profile-circle">✦</div>
+      <h3>小星星</h3><p>愿你每天都发现一点点美好。</p>
+      <div class="drawer-links">
+        <button data-nav="home"><span class="mask-icon icon-home"></span>首页</button>
+        <button data-nav="box"><span class="mask-icon icon-box"></span>魔法盒</button>
+        <button data-nav="meditate"><span class="mask-icon icon-moon"></span>冥想</button>
+        <button data-nav="gratitude"><span>♡</span>感恩日记</button>
+      </div>
+      <div class="setting-row"><span><b>早晚正能量 Notice</b><small>每天早上与睡前温柔提醒</small></span><label class="switch"><input id="noticeToggle" type="checkbox" checked><i></i></label></div>
+    </div>
+  </aside>
+
+  <div class="modal" id="wishModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header"><h3>放进魔法盒</h3><button id="closeWishModal" aria-label="关闭">×</button></div>
+      <div class="mode-switch"><button class="mode active" data-mode="text">写纸条</button><button class="mode" data-mode="image">上传图片</button></div>
+      <form id="wishForm">
+        <textarea id="wishText" maxlength="120" placeholder="写下你的愿望、期待，或此刻想珍藏的美好…"></textarea>
+        <label class="upload-box hidden" id="uploadBox"><input id="wishImage" type="file" accept="image/*"><span>＋ 选择一张图片</span></label>
+        <button class="gold-button" type="submit">收藏进魔法盒</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
